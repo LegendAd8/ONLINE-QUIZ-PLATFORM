@@ -1,0 +1,33 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        // Create a new quiz
+        Quiz quiz = new Quiz();
+
+        // Create some sample questions
+        Question question1 = new Question(
+                "What is the capital of France?",
+                Arrays.asList("Berlin", "Madrid", "Paris", "Rome"),
+                "Paris"
+        );
+        Question question2 = new Question(
+                "Which of these is the largest planet in our solar system?",
+                Arrays.asList("Earth", "Jupiter", "Mars", "Venus"),
+                "Jupiter"
+        );
+        Question question3 = new Question(
+                "What is the square root of 64?",
+                Arrays.asList("6", "7", "8", "9"),
+                "8"
+        );
+
+        // Add questions to the quiz
+        quiz.addQuestion(question1);
+        quiz.addQuestion(question2);
+        quiz.addQuestion(question3);
+
+        // Start the quiz
+        quiz.start();
+    }
+}

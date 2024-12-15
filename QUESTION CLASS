@@ -1,0 +1,38 @@
+import java.util.List;
+
+public class Question {
+    private String questionText;
+    private List<String> options;
+    private String correctAnswer;
+    private String userAnswer;
+
+    public Question(String questionText, List<String> options, String correctAnswer) {
+        this.questionText = questionText;
+        this.options = options;
+        this.correctAnswer = correctAnswer;
+    }
+
+    public String getQuestionText() {
+        return questionText;
+    }
+
+    public List<String> getOptions() {
+        return options;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public String getUserAnswer() {
+        return userAnswer;
+    }
+
+    public void setUserAnswer(String userAnswer) {
+        this.userAnswer = userAnswer;
+    }
+
+    public boolean isAnswerCorrect() {
+        return correctAnswer.equals(userAnswer);
+    }
+}

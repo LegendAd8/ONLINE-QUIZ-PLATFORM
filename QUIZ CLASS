@@ -1,0 +1,59 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class Quiz {
+    private List<Question> questions;
+    private int score;
+
+    public Quiz() {
+        questions = new ArrayList<>();
+        score = 0;
+    }
+
+    public void addQuestion(Question question) {
+        questions.add(question);
+    }
+
+    public void start() {
+        Scanner scanner = new Scanner(System.in);
+
+        // Display the questions
+        for (int i = 0; i < questions.size(); i++) {
+            Question question = questions.get(i);
+            System.out.println((i + 1) + ". " + question.getQuestionText());
+            List<String> options = question.getOptions();
+            for (int j = 0; j < options.size(); j++) {
+                System.out.println("  " + (char)('A' + j) + ": " + options.get(j));
+            }
+
+            System.out.print("Your answer (A, B, C, D): ");
+            String userAnswer = scanner.nextLine().toUpperCase();
+
+            // Validate the input
+            if (userAnswer.matches("[A-D]")) {
+                question.setUserAnswer(options.get(userAnswer.charAt(0) - 'A'));
+                if (question.isAnswerCorrect()) {
+                    score++;
+                }
+            } else {
+                System.out.println("Invalid answer! Please enter A, B, C, or D.");
+                i--; // Retry the same question
+            }
+        }
+
+        // Display the final score
+        System.out.println("\nQuiz completed!");
+        System.out.println("Your score: " + score + "/" + questions.size());
+
+        // Show correct answers if needed
+        System.out.println("\nCorrect answers:");
+        for (int i = 0; i < questions.size(); i++) {
+            Question question = questions.get(i);
+            System.out.println((i + 1) + ". " + question.getQuestionText() +
+                    " (Correct answer: " + question.getCorrectAnswer() + ")");
+        }
+
+        scanner.close();
+    }
+}
